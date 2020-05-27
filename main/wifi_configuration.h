@@ -10,8 +10,8 @@
 #ifndef __WIFI_CONFIGURATION__
 #define __WIFI_CONFIGURATION__
 
-#define WIFI_SSID "DAP"
-#define WIFI_PASS "12345678"
+#define WIFI_SSID "DeBug406"
+#define WIFI_PASS "debug406"
 
 #define PORT 3240
 
