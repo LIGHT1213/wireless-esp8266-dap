@@ -34,19 +34,13 @@ jobs:
         python ./idf.py build
         echo "::set-output name=status::success"
 
-    - name: Generate release tag
-      id: tag
-      if: env.UPLOAD_USER_FIRMWARE == 'true' && steps.script.outputs.status == 'success' && !cancelled()
+    - name: Prepare artifact
       run: |
-        echo "::set-output name=release_tag::UserBuild_$(date +"%Y.%m.%d-%H:%M")"
-        echo "::set-output name=status::success"
-
-    - name: Release user firmware
-      uses: softprops/action-gh-release@v1
-      if: steps.tag.outputs.status == 'success' && !cancelled()
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        mkdir -p ./artifact/firmware
+        cp -rf $(find ./build -type f -name "*.bin") ./artifact/firmware/
+    - name: Deliver firmware
+      uses: actions/upload-artifact@v2
       with:
-        tag_name: ${{ steps.tag.outputs.release_tag }}
-        files: ${{ env.FIRMWARE }}/esp8266_dap.bin
+        name: CLtest
+        path: ./build
 
