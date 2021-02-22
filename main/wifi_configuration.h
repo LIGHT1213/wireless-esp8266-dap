@@ -10,7 +10,7 @@
 #ifndef __WIFI_CONFIGURATION__
 #define __WIFI_CONFIGURATION__
 
-#define WIFI_SSID "Light"
+#define WIFI_SSID "Light_5G"
 #define WIFI_PASS "980807PCH"
 
 #define PORT 3240
